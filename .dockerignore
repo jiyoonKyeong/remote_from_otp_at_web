@@ -1,0 +1,10 @@
+node_modules
+.env
+.env.*
+*.pem
+*.key
+*.crt
+*.log
+.git
+test
+README.md

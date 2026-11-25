@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>원격 접속 게이트</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <!-- 1단계: 아이디와 비밀번호 -->
+    <main id="view-login" class="center" hidden>
+      <form id="login-form" class="card" autocomplete="off">
+        <h1>원격 접속 게이트</h1>
+        <p class="lead">두 사람이 모두 인증해야 원격 화면이 열립니다.</p>
+        <label for="login-id">아이디</label>
+        <input id="login-id" name="id" type="text" maxlength="32" autocapitalize="none" spellcheck="false" required />
+        <label for="login-password">비밀번호</label>
+        <input id="login-password" name="password" type="password" maxlength="256" required />
+        <p id="login-error" class="error" role="alert"></p>
+        <button id="login-submit" class="primary" type="submit">인증번호 받기</button>
+      </form>
+    </main>
+
+    <!-- 2단계: 문자 인증번호 -->
+    <main id="view-otp" class="center" hidden>
+      <form id="otp-form" class="card" autocomplete="off">
+        <h1>인증번호 입력</h1>
+        <p class="lead"><span id="otp-phone"></span> 로 보낸 6자리 숫자를 입력하세요.</p>
+        <label for="otp-code">인증번호</label>
+        <input id="otp-code" name="code" type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" required />
+        <p id="otp-timer" class="hint"></p>
+        <p id="otp-error" class="error" role="alert"></p>
+        <button id="otp-submit" class="primary" type="submit">확인</button>
+        <div class="row">
+          <button id="otp-resend" type="button">다시 받기</button>
+          <button id="otp-cancel" type="button">취소</button>
+        </div>
+      </form>
+    </main>
+
+    <!-- 원격 화면 -->
+    <div id="view-room" class="room" hidden>
+      <header class="bar">
+        <div class="bar-info">
+          <strong id="room-me"></strong>
+          <span id="room-role" class="badge"></span>
+          <span id="room-peer" class="peer"></span>
+        </div>
+        <div class="bar-actions">
+          <span id="room-expiry" class="hint"></span>
+          <button id="room-cad" type="button" hidden>Ctrl+Alt+Del</button>
+          <button id="room-handover" type="button" hidden>조작 권한 넘기기</button>
+          <button id="room-logout" type="button">로그아웃</button>
+        </div>
+      </header>
+      <div id="stage" class="stage" tabindex="0">
+        <div id="screen" class="screen"></div>
+        <div id="overlay" class="overlay">
+          <p id="overlay-text"></p>
+        </div>
+      </div>
+    </div>
+
+    <p id="offline" class="offline" hidden>서버에 연결할 수 없습니다. 다시 시도하는 중입니다.</p>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "remote-gate",
+  "version": "1.0.0",
+  "private": true,
+  "description": "두 사람이 모두 OTP 인증을 마쳐야 열리는 Apache Guacamole 원격 접속 게이트",
+  "type": "module",
+  "engines": {
+    "node": ">=20.6"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --env-file=.env --watch src/server.js",
+    "test": "node --test test/protocol.test.js test/config.test.js test/gate.test.js",
+    "hash-password": "node scripts/hash-password.js",
+    "mock": "node scripts/mock-guacamole.js"
+  },
+  "dependencies": {
+    "guacamole-common-js": "1.5.0",
+    "ws": "^8.18.0"
+  }
+}
